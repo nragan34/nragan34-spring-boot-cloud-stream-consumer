@@ -1,0 +1,46 @@
+buildscript {
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$SPRING_BOOT_VERSION"
+        classpath "io.spring.gradle:dependency-management-plugin:$SPRING_DEPENDENCY_MANAGEMENT_VERSION"
+    }
+}
+
+//add plugin
+plugins {
+    id 'idea'
+    id 'groovy'
+}
+
+//apply plugin to all projects with localGroovy implementation
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'groovy'
+    apply plugin: 'java-library'
+    dependencies {
+        implementation localGroovy()
+    }
+}
+
+group 'org.example'
+version "$version"
+
+repositories {
+    mavenCentral()
+}
+
+//apply the following to all sub projects
+subprojects {
+
+    apply from: '../gradle/tasks/dependency-management.gradle'
+
+    dependencies {
+        implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:3.1.2'
+        implementation "org.springframework.boot:spring-boot-starter-batch"
+        implementation "org.springframework.cloud:spring-cloud-starter-bus-amqp"
+        implementation "org.springframework.retry:spring-retry"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

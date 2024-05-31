@@ -1,0 +1,5 @@
+rootProject.name = 'spring-boot-cloud-stream-consumer'
+
+include 'driver'
+include 'service'
+

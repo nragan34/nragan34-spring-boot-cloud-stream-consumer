@@ -1,0 +1,19 @@
+spring:
+  autoconfigure:
+    #exclude the requirement of spring cloud batch to configure a database
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+    batch:
+      initialize-schema: never
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+#  cloud:
+#    stream:
+#      bindings:
+#        error-events:
