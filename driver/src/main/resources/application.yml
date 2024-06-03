@@ -1,4 +1,20 @@
+logging:
+  level:
+    org.springframework: DEBUG
+    org.springframework.messaging: DEBUG
+    org.springframework.cloud.stream: DEBUG
+    org.springframework.boot.context.config: DEBUG
+
 spring:
+  config:
+    import: classpath:/application.yml
+  profiles:
+    active: default
+
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: spring-cloud-stream-consumer
   autoconfigure:
     #exclude the requirement of spring cloud batch to configure a database
     exclude:
@@ -13,7 +29,12 @@ spring:
     username: guest
     password: guest
 
-#  cloud:
-#    stream:
-#      bindings:
-#        error-events:
+  cloud:
+    config:
+      label: spring-cloud-stream-consumer
+    stream:
+      bindings:
+        fileTransferEvent-in:
+          destination: file-transfer-event
+          group: batch-group
+          content-type: application/json

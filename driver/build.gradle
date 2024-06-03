@@ -1,19 +1,23 @@
+buildscript {
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:$SPRING_DEPENDENCY_MANAGEMENT_VERSION"
+    }
+}
+
 plugins {
-    id 'groovy'
+    id 'org.springframework.boot'
 }
 
-group 'org.example'
-
-repositories {
-    mavenCentral()
-}
+//springBoot {
+//    mainClass.set('com.springcloudstream.example.Application')
+//}
 
 dependencies {
-    implementation 'org.apache.groovy:groovy:4.0.14'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-}
+    api project(':service')
 
-test {
-    useJUnitPlatform()
+    implementation "org.springframework.cloud:spring-cloud-starter-config"
+    implementation "org.springframework.cloud:spring-cloud-starter-stream-rabbit"
+    implementation "org.springframework.integration:spring-integration-file"
+
+    testImplementation "org.springframework.cloud:spring-cloud-stream-test-support"
 }

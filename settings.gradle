@@ -1,5 +1,6 @@
-rootProject.name = 'spring-boot-cloud-stream-consumer'
+rootProject.name = "$SERVICE_NAME"
 
-include 'driver'
 include 'service'
+include 'driver'
+
 

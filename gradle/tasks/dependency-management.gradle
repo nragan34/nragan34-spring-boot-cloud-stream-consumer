@@ -9,6 +9,9 @@ if (project.name != rootProject.name) {
             classpath "org.springframework.boot:spring-boot-gradle-plugin:$SPRING_BOOT_VERSION"
             classpath "io.spring.gradle:dependency-management-plugin:$SPRING_DEPENDENCY_MANAGEMENT_VERSION"
         }
+        configurations.classpath {
+            exclude group: 'org.springframework', moduel: 'spring-web'
+        }
     }
 
     apply plugin: "io.spring.dependency-management"

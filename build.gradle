@@ -16,6 +16,7 @@ allprojects {
     apply plugin: 'idea'
     apply plugin: 'groovy'
     apply plugin: 'java-library'
+
     dependencies {
         implementation localGroovy()
     }
