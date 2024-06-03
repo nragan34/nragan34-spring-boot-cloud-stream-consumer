@@ -12,6 +12,8 @@ class SampleEventListener {
     @StreamListener(SampleEventListenerSink.FILE_TRANSFER_EVENT_IN)
     void process(Object payload) {
         log.info("Processing inbound {}", payload)
+
+        //TODO: configure smb, configure sftp, transfer zip to sftp
         println("Event heard and output event triggered!")
     }
 }
